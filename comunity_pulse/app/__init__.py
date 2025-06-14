@@ -1,11 +1,14 @@
+
 from flask import Flask
 
 from config import config_by_name
 from .routers.questions import questions_bp
 from .routers.responses import responses_bp
+from .routers.categories import category_bp
 from app.models import db
 from flask_migrate import Migrate
 import os
+
 
 def create_app(config_name=None):
 
@@ -21,6 +24,7 @@ def create_app(config_name=None):
     migrate.init_app(app, db) 
     app.register_blueprint(questions_bp)
     app.register_blueprint(responses_bp)
+    app.register_blueprint(category_bp)
 
     return app
 
