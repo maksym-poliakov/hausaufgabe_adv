@@ -19,8 +19,17 @@ class Task(models.Model):
     deadline = models.DateTimeField()
     created_at = models.DateTimeField(auto_now_add=True)
 
+    class Meta:
+        db_table = 'task_manager_task'
+        ordering = ['-created_at']
+        verbose_name = 'Task'
+        verbose_name_plural = 'Tasks'
+        unique_together = ('title',)
+
+
     def __str__(self):
         return self.title
+
 
 class SubTask(models.Model):
     title = models.CharField(help_text='название задачи')
@@ -30,12 +39,26 @@ class SubTask(models.Model):
     deadline = models.DateTimeField()
     created_at = models.DateTimeField(auto_now_add=True)
 
+    class Meta:
+        db_table = 'task_manager_subtask'
+        ordering = ['-created_at']
+        verbose_name = 'Sub Task'
+        verbose_name_plural = 'Sub Tasks'
+        unique_together = ('title',)
+
+
     def __str__(self):
         return self.title
+
 
 class Category(models.Model):
     name = models.CharField(max_length=70,help_text='Название категории')
 
+    class Meta:
+        db_table = 'task_manager_category'
+        verbose_name = 'Category'
+        verbose_name_plural = 'Categories'
+        unique_together = ('name',)
 
     def __str__(self):
         return self.name
