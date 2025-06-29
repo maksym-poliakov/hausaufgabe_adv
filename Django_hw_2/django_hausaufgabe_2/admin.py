@@ -34,7 +34,7 @@ class SubTaskAdmin(admin.ModelAdmin):
     ordering = ['-created_at']
     list_per_page = 25
 
-    @admin.action(description = 'status Done')
+    @admin.action(description = 'Update status Done')
     def done_status(self,req,queryset):
         queryset.update(status='Done')
 
