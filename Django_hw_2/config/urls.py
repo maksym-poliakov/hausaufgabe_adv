@@ -20,4 +20,5 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     # path('',include('django_hausaufgabe_2.urls'))
+    path('project_manager/',include('django_hausaufgabe_2.urls'))
 ]
