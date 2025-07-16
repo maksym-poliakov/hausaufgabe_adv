@@ -6,7 +6,9 @@ from django_hausaufgabe_13.views import (
   tasks_statistics,
   category_create,
   category_update,
-  task_detail
+  task_detail,
+  SubTaskListCreateView,
+  SubTaskDetailUpdateDeleteView,
 )
 
 urlpatterns = [
@@ -16,5 +18,8 @@ urlpatterns = [
     path('statistics/', view=tasks_statistics, name='statistics'),
     path('category_create/',view=category_create, name='category-create'),
     path('category_update/<int:pk>',view=category_update, name='category-update'),
-    path('task_detail/<int:pk>',view=task_detail,name='task-detail')
+    path('task_detail/<int:pk>',view=task_detail,name='task-detail'),
+    path('subtasks/',view=SubTaskListCreateView.as_view(),name='subtasks'),
+    path('subtasks/<int:pk>',view=SubTaskDetailUpdateDeleteView.as_view(), name='subtask-detail-update-delete')
+
 ]

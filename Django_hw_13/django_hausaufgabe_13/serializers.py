@@ -40,6 +40,24 @@ class SubTasksSerializer(serializers.ModelSerializer):
         fields = ['title','description','task','status','deadline','created_at']
 
 
+class SubTaskListSerializer(SubTasksSerializer):
+    pass
+
+
+class SubTaskDetailSerializer(serializers.ModelSerializer):
+    task = TaskCreateSerializer()
+    class Meta:
+        model = SubTask
+        fields = ['title', 'description', 'task', 'status', 'deadline', 'created_at']
+
+
+class SubTaskUpdateSerializer(serializers.ModelSerializer):
+    task = serializers.PrimaryKeyRelatedField(queryset=Task.objects.all())
+    class Meta:
+        model = SubTask
+        fields = ['title','description','task','status','deadline']
+
+
 class CategoryCreateSerializer(serializers.ModelSerializer):
     name = serializers.CharField(validators=[validated_name])
     class Meta:
